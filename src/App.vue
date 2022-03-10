@@ -1,18 +1,17 @@
 <template>
-  <div id="app" class="bg-blue-40">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <main>
+    <px-header />
+    <px-assets-table />
+  </main>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue"; //importamos el componente
+import PxHeader from "./components/PxHeader.vue";
+import PxAssetsTable from "./components/PxAssetsTable.vue";
 
 export default {
   name: "App", //este nombre permite hacer un dbug mas facil
-  components: {
-    HelloWorld, //declaramos el componente para poderlo usar en el template (ver linea 4)
-  },
+  components: { PxHeader, PxAssetsTable },
 };
 </script>
 
