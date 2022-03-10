@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import HelloWorld from "./components/HelloWorld.vue"; //importamos el componente
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    HelloWorld,   //declaramos el componente para poderlo usar en el template (ver linea 4)
   },
 };
 </script>
