@@ -90,7 +90,7 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: String,
+    msg: String, //permite indicar el noombre y  el tipo de dato que se espera
   },
 };
 </script>
