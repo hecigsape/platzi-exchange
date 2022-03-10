@@ -1,17 +1,20 @@
 <template>
   <main>
     <px-header />
-    <px-assets-table />
+    <!--el componenete router-view permite remplazar el contenido de cada ruta 
+        
+-->
+    <router-view class="container px-5 sm:px-20 flex_justify-center" />
+    <home />
   </main>
 </template>
 
 <script>
 import PxHeader from "./components/PxHeader.vue";
-import PxAssetsTable from "./components/PxAssetsTable.vue";
 
 export default {
   name: "App", //este nombre permite hacer un dbug mas facil
-  components: { PxHeader, PxAssetsTable },
+  components: { PxHeader },
 };
 </script>
 
