@@ -60,7 +60,7 @@
             </label>
           </div>
 
-          <span class="text-xl"></span>
+          <span class="text-xl"> </span>
         </div>
       </div>
     </template>
