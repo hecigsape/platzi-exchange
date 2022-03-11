@@ -21,16 +21,24 @@
       >
         <td>
           <img
+            class="w-8 h-8"
             :src="`https://static.coincap.io/assets/icons/${a.symbol.toLowerCase()}@2x.png`"
             :alt="a.name"
-            style="max-height: 65px"
           />
         </td>
         <td>#{{ a.rank }}</td>
         <td>{{ a.name }}</td>
-        <td>{{ a.priceUsd }}</td>
-        <td>{{ a.marketCapUsd }}</td>
-        <td>{{ a.changePercent24Hr }}</td>
+        <td>{{ a.priceUsd | dolar }}</td>
+        <td>{{ a.marketCapUsd | dolar }}</td>
+        <td
+          :class="
+            a.changePercent24Hr.includes('-')
+              ? 'text-red-600'
+              : 'text-green-600'
+          "
+        >
+          {{ a.changePercent24Hr | percent }}
+        </td>
         <td class="hidden sm:block"></td>
       </tr>
     </tbody>
