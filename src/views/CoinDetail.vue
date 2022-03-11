@@ -1,6 +1,9 @@
 <template>
   <div class="flex-col">
-    <template>
+    <div class="flex justify-center">
+      <bounce-loader :loading="isLoading" :color="'#68d391'" :size="100" />
+    </div>
+    <template v-if="!isLoading">
       <div class="flex flex-col sm:flex-row justify-around items-center">
         <div class="flex flex-col items-center">
           <img
@@ -22,19 +25,19 @@
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio actual</b>
-              <span>{{ asset.priceUsd | dolar }}</span>
+              <span>{{ asset.priceUsd | dollar }}</span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio más bajo</b>
-              <span>{{ min | dolar }}</span>
+              <span>{{ min | dollar }}</span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio más alto</b>
-              <span>{{ max | dolar }}</span>
+              <span>{{ max | dollar }}</span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio Promedio</b>
-              <span>{{ avg | dolar }}</span>
+              <span>{{ avg | dollar }}</span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Variación 24hs</b>
@@ -60,9 +63,17 @@
             </label>
           </div>
 
-          <span class="text-xl"> </span>
+          <span class="text-xl"></span>
         </div>
       </div>
+
+      <line-chart
+        class="my-10"
+        :colors="['orange']"
+        :min="min"
+        :max="max"
+        :data="history.map((h) => [h.date, parseFloat(h.priceUsd).toFixed(2)])"
+      />
     </template>
   </div>
 </template>
@@ -75,6 +86,7 @@ export default {
     return {
       asset: {},
       history: {},
+      isLoading: false,
     };
   },
 
@@ -85,8 +97,8 @@ export default {
     min() {
       /*... destractory agaaara el array de history mapeado, map
        permite mapear los elementos para que quede mas consistente
-       h representa cada elemento del array 
-       
+       h representa cada elemento del array
+
        */
       return Math.min(
         ...this.history.map((h) => parseFloat(h.priceUsd).toFixed(2))
@@ -104,20 +116,24 @@ export default {
     },
   },
   methods: {
-    //obtiene  lainformacion de api rest y esta funcion sera utiliada en create
-
     getCoin() {
-      //nos permite tomar informacion de l url
-      //los paraamtros y el queri string
       const id = this.$route.params.id;
+      this.isLoading = true;
 
-      Promise.all([api.getAsset(id), api.getAssetHistory(id)]).then(
-        ([asset, history]) => {
+      Promise.all([api.getAsset(id), api.getAssetHistory(id)])
+        .then(([asset, history]) => {
           this.asset = asset;
           this.history = history;
-        }
-      );
+        })
+        .finally(() => (this.isLoading = false));
     },
   },
 };
 </script>
+
+<style scoped>
+td {
+  padding: 10px;
+  text-align: center;
+}
+</style>
