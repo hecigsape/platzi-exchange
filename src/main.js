@@ -9,7 +9,7 @@ import { VueSpinners } from "@saeris/vue-spinners";
 import Chart from "chart.js";
 import { dollarFilter, percentFilter } from "@/filters"; //permite importar el filtro
 
-Vue.filter("dolar", dollarFilter); //permite usar el filtro
+Vue.filter("dollar", dollarFilter); //permite usar el filtro
 Vue.filter("percent", percentFilter); //permite usar el filtro
 Vue.config.productionTip = false;
 Vue.use(VueSpinners); //le dice a vue que use la libreria
