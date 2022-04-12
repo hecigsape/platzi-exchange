@@ -148,6 +148,13 @@ export default {
     this.getCoin();
   },
 
+  //permite monitorear cambis en router
+  watch: {
+    $route() {
+      this.getCoin();
+    },
+  },
+
   methods: {
     getWebSite(exchange) {
       this.$set(exchange, "isLoading", true);

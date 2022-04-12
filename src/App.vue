@@ -1,6 +1,6 @@
 <template>
   <main>
-    <px-header />
+    <px-header :links="links" />
     <!--el componenete router-view permite remplazar el contenido de cada ruta 
         
 -->
@@ -27,8 +27,8 @@ export default {
           to: { name: "coin-detail", params: { id: "ethereum" } },
         },
         {
-          title: "XRP",
-          to: { name: "coin-detail", params: { id: "ripple" } },
+          title: "USDT",
+          to: { name: "coin-detail", params: { id: "tether" } },
         },
       ],
     };
